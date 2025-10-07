@@ -8,6 +8,6 @@ namespace ToDoWebApi.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-        public DbSet<TodoItems> TodoItems { get; set; }
+        public DbSet<TodoItem> TodoItems { get; set; } = null;
     }
 }
