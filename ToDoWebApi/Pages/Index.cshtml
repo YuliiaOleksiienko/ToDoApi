@@ -1,4 +1,35 @@
 ﻿@page
 @model ToDoWebApi.Pages.IndexModel
 @{
+    ViewData["Title"] = "My ToDo list";
 }
+
+<link rel="stylesheet" href="~/style.css" />
+
+<div class="container">
+    <h1>📋 My ToDo list</h1>
+
+    <form method="post" asp-page-handler="Add" class="todo-form">
+        <input type="text" name="NewTaskTitle" placeholder="Write task..." required />
+        <button type="submit">Add</button>
+    </form>
+
+    <ul class="todo-list">
+        @foreach (var item in Model.TodoItems)
+        {
+            <li>
+                <span class="@(item.IsCompleted ? "done" : "")">@item.Title</span>
+
+                <form method="post" asp-page-handler="Toggle" style="display:inline">
+                    <input type="hidden" name="id" value="@item.Id" />
+                    <button type="submit">@(item.IsCompleted ? "↩" : "✓")</button>
+                </form>
+
+                <form method="post" asp-page-handler="Delete" style="display:inline">
+                    <input type="hidden" name="id" value="@item.Id" />
+                    <button type="submit">🗑</button>
+                </form>
+            </li>
+        }
+    </ul>
+</div>
