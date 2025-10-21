@@ -30,7 +30,7 @@ namespace ToDoWebApi.Pages
         }
 
        
-        public async Task<IActionResult> OnPostAddAsync()
+        public async Task<IActionResult> OnPostAsync()
         {
             if (!string.IsNullOrWhiteSpace(NewTaskTitle))
             {
@@ -42,7 +42,7 @@ namespace ToDoWebApi.Pages
                 _context.TodoItems.Add(todo);
                 await _context.SaveChangesAsync();
             }
-            return RedirectToPage();
+            return RedirectToPage("./Index");
         }
 
         
@@ -54,7 +54,7 @@ namespace ToDoWebApi.Pages
                 todo.IsCompleted = !todo.IsCompleted;
                 await _context.SaveChangesAsync();
             }
-            return RedirectToPage();
+            return RedirectToPage("./Index");
         }
 
         
@@ -66,7 +66,7 @@ namespace ToDoWebApi.Pages
                 _context.TodoItems.Remove(todo);
                 await _context.SaveChangesAsync();
             }
-            return RedirectToPage();
+            return RedirectToPage("./Index");
         }
     }
 }
